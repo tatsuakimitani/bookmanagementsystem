@@ -1,0 +1,20 @@
+{
+  "name": "bookmanagement",
+  "authors": [
+    "tatsuakimitani <t.mitani1988@gmail.com>"
+  ],
+  "description": "bookmanagement-sytem-bower",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.6"
+  }
+}

@@ -1,0 +1,148 @@
+<html>
+<head>
+<meta charset="utf-8"></meta>
+<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen"></link>
+<link href="/css/layout.css" rel="stylesheet" media="screen"></link>
+<title>書籍検索 | 図書管理システム</title>
+</head>
+<body>
+
+  <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+    <a class="navbar-brand" href="#">図書管理システム</a>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- end of header -->
+
+  <div class="container">
+    <div class="starter-template">
+
+      <h2>書籍検索</h2>
+
+      <form id="form" method="post" class="form form-horizontal">
+        <div id="searchContainer">
+          <input type="text" placeholder="書籍名を入力してください。" class="input-lg search-query" />
+          <button type="submit" class="btn btn-primary" onclick="location.href='./list.html';return false;">書籍検索</button>
+        </div>
+        <!-- end of searchContainer -->
+
+        <br />
+        <div id="listContainer">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>書名</th>
+                <th>著者</th>
+                <th>出版社</th>
+                <th>カテゴリ</th>
+                <th>貸出状況</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="numeric">1</td>
+                <td class="text">JUnit実践入門</td>
+                <td class="text">渡辺 修司</td>
+                <td class="text">WEB+DB PRESS plus</td>
+                <td class="text">コンピュータ・IT</td>
+                <td class="status">貸出可</td>
+                <td class="operation"><a href="./detail.html" class="btn btn-info" role="button">照会</a> <a href="./borrow.html" class="btn btn-info" role="button">貸出/返却</a> <a
+                  href="./update.html" class="btn btn-secondary" role="button">編集</a> <a href="./deleteConfirm.html" class="btn btn-secondary" role="button">削除</a></td>
+              </tr>
+              <tr>
+                <td class="numeric">2</td>
+                <td class="text">仕事の思想</td>
+                <td class="text">田坂 広志</td>
+                <td class="text">PHP文庫</td>
+                <td class="text">文学・評論</td>
+                <td class="status">貸出中</td>
+                <td class="operation"><a href="./detail.html" class="btn btn-info" role="button">照会</a> <a href="./borrow.html" class="btn btn-info" role="button">貸出/返却</a>
+                  <button type="submit" disabled="disabled" class="btn" onclick="location.href='./update.html';return false;">編集</button>
+                  <button type="submit" disabled="disabled" class="btn" onclick="location.href='./deleteConfirm.html';return false;">削除</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="submit" class="btn btn-info" onclick="location.href='./create.html';return false;">新規</button>
+        </div>
+        <!-- end of listContainer -->
+      </form>
+    </div>
+  </div>
+
+</body>
+
+</html>
+
+<!-- 
+<body>
+</body>
+ -->
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+  <h1>
+    Hello Spring <span style="color: red">Boot!!</span>
+  </h1>
+
+  <div class="container">
+    <div class="page-header">
+      <h1 th:utext="#{actor.index.title}">actor.index.title</h1>
+    </div>
+
+    <div th:replace="_temp :: nav"></div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <form action="/actor/search" th:action="@{/actor/search}" method="get">
+          <div class="input-group">
+            <input type="text" name="keyword" class="form-control" placeholder="Search for..." /> <span class="input-group-btn"> <input class="btn btn-default" type="submit" value="Search!" />
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th th:utext="#{actor.id}">id</th>
+              <th th:utext="#{actor.name}">name</th>
+              <th th:utext="#{actor.height}">height</th>
+              <th th:utext="#{actor.blood}">blood</th>
+              <th th:utext="#{actor.birthday}">birthday</th>
+              <th th:utext="#{actor.birthplace}">birthplace</th>
+              <th th:utext="#{actor.update_at}">update_at</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="item,iterStat : ${list}">
+              <td><a class="btn btn-default" href="/actor/${item.id}" th:href="@{/actor/{id}(id=${item.id})}" th:text="${item.id}">1</a></td>
+              <td th:text="${item.name}">1</td>
+              <td th:text="${item.height != null}? ${item.height} : '-'">1</td>
+              <td th:text="${item.blood != null}? ${item.blood} : '-'">1</td>
+              <td th:text="${item.birthday != null}? ${#dates.format(item.birthday,'yyyy-MM-dd')} : '-'">1</td>
+              <td th:text="(${item.birthplaceId != null}? ${item.birthplaceId} + ':' : '') + (${item.pref != null }? ${item.pref.name} : '(unknown)')"></td>
+              <td th:text="${item.updateAt}">1</td>
+              <td><a class="btn btn-warning" href="/actor/delete/${item.id}" th:href="@{/actor/delete/{id}(id=${item.id})}">delete</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div th:replace="_temp :: footer"></div>
+  </div>
+
+  <div th:include="_temp :: script"></div>
+
+</body>
+</html> -->
