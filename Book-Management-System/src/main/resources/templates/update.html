@@ -1,0 +1,72 @@
+<html>
+
+<head>
+  <meta charset="utf-8"></meta>
+  <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen"></link>
+  <link href="/css/layout.css" rel="stylesheet" media="screen"></link>
+  <title>編集 | 図書管理システム</title>
+</head>
+
+<body>
+  <div id="header" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar">
+          <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="#">図書管理システム</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="list.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contents" class="container">
+    <h2>編集</h2>
+    <ul class="error">
+      <li>Error Message!</li>
+    </ul>
+    <form id="form" method="post" class="form form-horizontal">
+      <table id="bookItem" class="tableDetail tableInput">
+        <tr>
+          <th><span class="required">書名</span></th>
+          <td><input type="text" id="bookName" class="input-block-level" placeholder="本の名前を入力してください" value="JUnit実践入門" /></td>
+        </tr>
+        <tr>
+          <th>著名</th>
+          <td><input type="text" id="author" class="input-block-level" placeholder="著者名を入力してください" value="渡辺修二" /></td>
+        </tr>
+        <tr>
+          <th>出版社</th>
+          <td><input type="text" id="publisher" class="input-block-level" placeholder="出版社を入力してください" value="WEB+DB PRESS" /></td>
+        </tr>
+        <tr>
+          <th><span class="required">カテゴリ</span></th>
+          <td><select id="category">
+              <option>-- 選択してください --</option>
+              <option>文学・評論</option>
+              <option>科学・テクノロジー</option>
+              <option selected>コンピュータ・ＩＴ</option>
+              <option>雑誌</option>
+              <option>ビジネス・経済</option>
+          </select></td>
+        </tr>
+        <tr>
+          <th>発売日</th>
+          <td><input type="text" id="releaseDate" class="input-block-level" placeholder="2013/12/11" value="2013/12/11"></td>
+        </tr>
+        <tr>
+          <th>概要</th>
+          <td><textarea rows="5" id="summary" class="input-block-level">最新JUnitの使い方について詳細に記載している本。</textarea></td>
+        </tr>
+      </table>
+      <button type="submit" name="backSearch" class="btn" onclick="location.href='./list.html';return false;">戻る</button>
+<button type="submit" name="goUpdateConfirm" class="btn btn-info" onclick="location.href='./updateConfirm.html';return false;">更新確認</button>
+</form>
+</div>
+</body>
+
+</html>
