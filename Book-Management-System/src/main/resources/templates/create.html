@@ -10,6 +10,8 @@
 
 
   <title>新規登録</title>
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/js/createController.js"></script>
 
   <!-- Bootstrap -->
   <link href="/bower_components/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
@@ -40,7 +42,7 @@
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
-          <a href="/list" class="site_title"><i class="fa fa-book"></i> <span>図書管理</span></a>
+            <a href="/list" class="site_title"><i class="fa fa-book"></i> <span>図書管理</span></a>
           </div>
           <div class="clearfix"></div>
           <br />
@@ -59,13 +61,11 @@
             </div>
           </div>
           <!-- /sidebar menu -->
-
-
         </div>
       </div>
 
       <!-- page content -->
-      <div class="right_col" role="main" style="min-height: 540px;">
+      <div class="right_col" role="main" style="min-height: 540px;" ng-controller="RegisterBookController">
         <div class="">
           <div class="clearfix"></div>
           <div class="row">
@@ -77,33 +77,35 @@
                 </div>
                 <div class="x_content">
                   <br />
-                  <form id="demo-form2" class="form-horizontal form-label-left">
+                  <form id="demo-form2" class="form-horizontal form-label-left" name="registerForm">
 
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">書名 <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" />
-                      </div>
+                        <input type="text" id="first-name" required="required" ng-model="book.name" class="form-control col-md-7 col-xs-12" />
+                      </div>{{book.name}}
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">著者 <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12" />
-                      </div>
+                        <input type="text" id="last-name" name="last-name" required="required" ng-model="book.author" class="form-control col-md-7 col-xs-12"
+                        />
+                      </div>{{book.author}}
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">出版社 <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12" />
+                        <input type="text" id="book-publisher" name="last-name" required="required" ng-model="book.publisher" class="form-control col-md-7 col-xs-12"
+                        />
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">カテゴリ<span class="required">*</span></label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select id="heard" class="form-control" required="required">
+                        <select id="heard" class="form-control" required="required" ng-model="book.category">
                           <option value="">Choose..</option>
                           <option value="press">Press</option>
                           <option value="net">Internet</option>
@@ -115,7 +117,8 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">出版日 <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="single_cal2" class="form-control has-feedback-left" aria-describedby="inputSuccess2Status2" required="required"/>
+                        <input type="text" id="single_cal2" class="form-control has-feedback-left" ng-model="book.publishDate" aria-describedby="inputSuccess2Status2"
+                          required="required" />
                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                         <span id="inputSuccess2Status2" class="sr-only">(success)</span>
                       </div>
@@ -123,7 +126,7 @@
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">概要  </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <textarea id="message" class="form-control parsley-success" name="message" data-parsley-trigger="keyup"></textarea>
+                        <textarea id="message" class="form-control parsley-success" ng-model="book.abstract" name="message" data-parsley-trigger="keyup"></textarea>
                       </div>
                     </div>
 
@@ -131,10 +134,10 @@
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <button class="btn btn-primary" type="button">キャンセル</button>
-                        <button type="submit" class="btn btn-success">登録確認</button>
+                        <!-- コンソールへ試験的に出力するようにしている -->
+                        <button type="submit" class="btn btn-success" ng-disabled="registerForm.$invalid" ng-click="register(book)">登録確認</button>
                       </div>
                     </div>
-
                   </form>
                 </div>
               </div>
