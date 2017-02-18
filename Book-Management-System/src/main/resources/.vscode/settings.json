@@ -4,6 +4,7 @@
     "editor.fontFamily": "MS Gothic",
     // Controls visibility of line numbers
     "editor.lineNumbers": true,
+    "editor.renderIndentGuides": true,
     // Controls the rendering size of tabs in characters. Accepted values: "auto", 2, 4, 6, etc. If set to "auto", the value will be guessed when a file is opened.
     "editor.tabSize": 2,
     // Controls if the editor will insert spaces for tabs. Accepted values:  "auto", true, false. If set to "auto", the value will be guessed when a file is opened.
