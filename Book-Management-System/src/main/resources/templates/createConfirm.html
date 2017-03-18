@@ -1,58 +1,201 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-<meta charset="utf-8"></meta>
-<script src="/bower_components/angular/angular.min.js"></script>
-<script src="/js/app.js"></script>
-<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen"></link>
-<link href="/css/layout.css" rel="stylesheet" media="screen"></link>
-<title>登録確認 | 図書管理システム</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8"></meta>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+
+  <title>登録確認 | 図書管理システム</title>
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/js/registerConfirmController.js"></script>
+
+  <!-- Bootstrap -->
+  <link href="/bower_components/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+  <!-- Font Awesome -->
+  <link href="/bower_components/gentelella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"></link>
+  <!-- NProgress -->
+  <link href="/bower_components/gentelella/vendors/nprogress/nprogress.css" rel="stylesheet"></link>
+  <!-- iCheck -->
+  <link href="/bower_components/gentelella/vendors/iCheck/skins/flat/green.css" rel="stylesheet"></link>
+  <!-- bootstrap-wysiwyg -->
+  <link href="/bower_components/gentelella/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet"></link>
+  <!-- Select2 -->
+  <link href="/bower_components/gentelella/vendors/select2/dist/css/select2.min.css" rel="stylesheet"></link>
+  <!-- Switchery -->
+  <link href="/bower_components/gentelella/vendors/switchery/dist/switchery.min.css" rel="stylesheet"></link>
+  <!-- starrr -->
+  <link href="/bower_components/gentelella/vendors/starrr/dist/starrr.css" rel="stylesheet"></link>
+  <!-- bootstrap-daterangepicker -->
+  <link href="/bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"></link>
+
+  <!-- Custom Theme Style -->
+  <link href="/bower_components/gentelella/build/css/custom.min.css" rel="stylesheet"></link>
 </head>
 
-<body>
-  <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-    <a class="navbar-brand" href="#">図書管理システム</a>
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active"><a class="nav-link" href="/list">Home <span class="sr-only">(current)</span></a></li>
-      </ul>
-    </div>
-  </nav>
-  <!-- end of header -->
+<body class="nav-md" ng-app="bookManagementApp">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="/list" class="site_title"><i class="fa fa-book"></i> <span>図書管理</span></a>
+          </div>
+          <div class="clearfix"></div>
+          <br />
 
-  <div id="contents" class="container">
-    <h2>登録確認</h2>
-    <form id="form" method="post" class="form form-horizontal">
-      <table id="bookItem" class="tableDetail tableLabel">
-        <tr>
-          <th>書名</th>
-          <td>JUnit実践入門</td>
-        </tr>
-        <tr>
-          <th>著名</th>
-          <td>渡辺修二</td>
-        </tr>
-        <tr>
-          <th>出版社</th>
-          <td>WEB+DB PRESS</td>
-        </tr>
-        <tr>
-          <th>カテゴリ</th>
-          <td>コンピュータ・ＩＴ</td>
-        </tr>
-        <tr>
-          <th>発売日</th>
-          <td>2013/12/11</td>
-        </tr>
-        <tr>
-          <th>概要</th>
-          <td>最新JUnitの使い方について詳細に記載している本。</td>
-        </tr>
-      </table>
-      <button type="submit" name="backCreate" class="btn" onclick="href='/create';return false;">戻る</button>
-      <button type="submit" name="doCreate" class="btn btn-info" onclick="href='/list';return false;">登録</button>
-    </form>
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3>General</h3>
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="/list">BookList</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- /sidebar menu -->
+        </div>
+      </div>
+
+      <!-- page content -->
+      <div class="right_col" role="main" style="min-height: 540px;" ng-controller="RegisterBookController">
+        <div class="">
+          <div class="clearfix"></div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>登録確認</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <br />
+                  <form id="demo-form2" class="form-horizontal form-label-left" name="registerForm">
+
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">書名 <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="first-name" ng-required="true" ng-model="book.name" class="form-control col-md-7 col-xs-12" />
+                        <span ng-show="registerForm.name.$error.required">書名は必須です。</span>
+                      </div>{{book.name}}
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">著者 <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="last-name" name="last-name" required="required" ng-model="book.author" class="form-control col-md-7 col-xs-12"
+                        /><span ng-show="registerForm.author.$error.required">著者は必須です。</span>
+                      </div>{{book.author}}
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">出版社 <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="book-publisher" name="last-name" required="required" ng-model="book.publisher" class="form-control col-md-7 col-xs-12"
+                        /><span ng-show="registerForm.publisher.$error.required">出版社は必須です。</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12">カテゴリ<span class="required">*</span></label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select id="heard" class="form-control" required="required" ng-model="book.category">
+                          <option value="">Choose..</option>
+                          <option value="press">Press</option>
+                          <option value="net">Internet</option>
+                          <option value="mouth">Word of mouth</option>
+                        </select>
+                        <span ng-show="registerForm.category.$error.required">カテゴリは必須です。</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12">出版日 <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="single_cal2" class="form-control has-feedback-left" ng-model="book.publishDate" aria-describedby="inputSuccess2Status2"
+                          required="required" /><span ng-show="registerForm.publishDate.$error.required">出版日は必須です。</span>
+                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                        <span id="inputSuccess2Status2" class="sr-only">(success)</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">概要  </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <textarea id="message" class="form-control parsley-success" ng-model="book.abstract" name="message" data-parsley-trigger="keyup"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button class="btn btn-primary" type="submit" ng-click="registerForm(book)">キャンセル</button>
+                        <!-- コンソールへ試験的に出力するようにしている -->
+                        <button type="submit" class="btn btn-success" ng-click="register(book)">登録確認</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /page content -->
+
+      <!-- footer content -->
+      <footer>
+        <div class="pull-right">
+          Copyright &copy; <a href="http://www.acroquest.co.jp/">Acroquest Technology Co., Ltd.</a> All rights reserved.
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      <!-- /footer content -->
+    </div>
   </div>
+
+  <!-- jQuery -->
+  <script src="/bower_components/gentelella/vendors/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="/bower_components/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- FastClick -->
+  <script src="/bower_components/gentelella/vendors/fastclick/lib/fastclick.js"></script>
+  <!-- NProgress -->
+  <script src="/bower_components/gentelella/vendors/nprogress/nprogress.js"></script>
+  <!-- bootstrap-progressbar -->
+  <script src="/bower_components/gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+  <!-- iCheck -->
+  <script src="/bower_components/gentelella/vendors/iCheck/icheck.min.js"></script>
+  <!-- bootstrap-daterangepicker -->
+  <script src="/bower_components/gentelella/vendors/moment/min/moment.min.js"></script>
+  <script src="/bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <!-- bootstrap-wysiwyg -->
+  <script src="/bower_components/gentelella/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+  <script src="/bower_components/gentelella/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+  <script src="/bower_components/gentelella/vendors/google-code-prettify/src/prettify.js"></script>
+  <!-- jQuery Tags Input -->
+  <script src="/bower_components/gentelella/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+  <!-- Switchery -->
+  <script src="/bower_components/gentelella/vendors/switchery/dist/switchery.min.js"></script>
+  <!-- Select2 -->
+  <script src="/bower_components/gentelella/vendors/select2/dist/js/select2.full.min.js"></script>
+  <!-- Parsley -->
+  <script src="/bower_components/gentelella/vendors/parsleyjs/dist/parsley.min.js"></script>
+  <!-- Autosize -->
+  <script src="/bower_components/gentelella/vendors/autosize/dist/autosize.min.js"></script>
+  <!-- jQuery autocomplete -->
+  <script src="/bower_components/gentelella/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+  <!-- starrr -->
+  <script src="/bower_components/gentelella/vendors/starrr/dist/starrr.js"></script>
+  <!-- Custom Theme Scripts -->
+  <script src="/bower_components/gentelella/build/js/custom.min.js"></script>
+
 </body>
 
 </html>
