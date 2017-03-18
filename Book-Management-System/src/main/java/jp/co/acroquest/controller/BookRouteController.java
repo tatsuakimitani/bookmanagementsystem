@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class BookRegistrationController
+public class BookRouteController
 {
     /**
      * 書籍情報一覧画面を表示
