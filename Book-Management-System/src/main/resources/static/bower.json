@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "angular": "^1.6.1",
-    "gentelella": "^1.4.0"
+    "gentelella": "^1.4.0",
+    "angular-route": "^1.6.3"
   }
 }
