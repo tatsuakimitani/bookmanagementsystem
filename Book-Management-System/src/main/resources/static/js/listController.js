@@ -1,4 +1,8 @@
+/**
+ * List画面用のコントローラ
+ */
 angular.module('bookManagementApp', []).controller('ListController', ['$scope', function ($scope) {
+  // 書籍情報
   $scope.dataList = [{
     no: 1,
     title: 'JUnit実践入門',
