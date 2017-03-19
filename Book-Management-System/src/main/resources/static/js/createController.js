@@ -1,7 +1,7 @@
 /**
  * 登録画面用のコントローラ
  */
-angular.module('bookManagementApp', []).controller('RegisterBookController', ['$scope', function ($scope) {
+angular.module('bookManagementApp', []).controller('RegisterBookController', ['$scope', '$location', function ($scope, $location) {
   var self = this;
   $scope.submitForm = function () {
     if ($scope.registerForm.$invalid) {
@@ -27,5 +27,8 @@ angular.module('bookManagementApp', []).controller('RegisterBookController', ['$
   self.submitRegisterForm = function (scope) {
     console.log("register");
     console.log(scope.book.name);
+    $scope.value = scope;
+    window.location.href = 'createConfirm';
+
   };
 }]);

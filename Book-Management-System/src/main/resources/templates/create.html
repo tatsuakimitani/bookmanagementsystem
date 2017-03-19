@@ -11,6 +11,7 @@
 
   <title>新規登録</title>
   <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/js/route.js"></script>
   <script src="/js/createController.js"></script>
 
   <!-- Bootstrap -->
@@ -83,7 +84,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">書名 <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="first-name" ng-required="true" ng-model="book.name" class="form-control col-md-7 col-xs-12" />
+                        <input type="text" id="book.name" name="name" ng-required="true" ng-model="book.name" class="form-control col-md-7 col-xs-12" />
                         <span ng-show="registerForm.name.$error.required">書名は必須です。</span>
                       </div>{{book.name}}
                     </div>
@@ -91,22 +92,22 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">著者 <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="last-name" name="last-name" required="required" ng-model="book.author" class="form-control col-md-7 col-xs-12"
-                        /><span ng-show="registerForm.author.$error.required">著者は必須です。</span>
+                        <input type="text" id="book.author" name="author" required="required" ng-model="book.author" class="form-control col-md-7 col-xs-12" /><span
+                          ng-show="registerForm.author.$error.required">著者は必須です。</span>
                       </div>{{book.author}}
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">出版社 <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="book-publisher" name="last-name" required="required" ng-model="book.publisher" class="form-control col-md-7 col-xs-12"
+                        <input type="text" id="book-publisher" name="publisher" required="required" ng-model="book.publisher" class="form-control col-md-7 col-xs-12"
                         /><span ng-show="registerForm.publisher.$error.required">出版社は必須です。</span>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">カテゴリ<span class="required">*</span></label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select id="heard" class="form-control" required="required" ng-model="book.category">
+                        <select id="book.category" class="form-control" name="category" required="required" ng-model="book.category">
                           <option value="">Choose..</option>
                           <option value="press">Press</option>
                           <option value="net">Internet</option>
@@ -119,7 +120,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">出版日 <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="single_cal2" class="form-control has-feedback-left" ng-model="book.publishDate" aria-describedby="inputSuccess2Status2"
+                        <input type="text" id="single_cal2" name="publishDate" class="form-control has-feedback-left" ng-model="book.publishDate" aria-describedby="inputSuccess2Status2"
                           required="required" /><span ng-show="registerForm.publishDate.$error.required">出版日は必須です。</span>
                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                         <span id="inputSuccess2Status2" class="sr-only">(success)</span>
@@ -128,7 +129,7 @@
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">概要  </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <textarea id="message" class="form-control parsley-success" ng-model="book.abstract" name="message" data-parsley-trigger="keyup"></textarea>
+                        <textarea id="book.abstract" class="form-control parsley-success" ng-model="book.abstract" data-parsley-trigger="keyup"></textarea>
                       </div>
                     </div>
 
@@ -137,7 +138,7 @@
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <button class="btn btn-primary" type="submit">キャンセル</button>
                         <!-- コンソールへ試験的に出力するようにしている -->
-                        <button type="submit" class="btn btn-success" ng-disabled="registerForm.$invalid" ng-click="registerForm(book)">登録確認</button>
+                        <button type="submit" class="btn btn-success">登録確認</button>
                       </div>
                     </div>
                   </form>
