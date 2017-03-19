@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.co.acroquest.mapper.BookMapper">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO book(bookName, authorName, publisher, category, publishedDate, bookAbstract) VALUES (#{bookName}, #{authorName},
+    #{publisher}, #{category}, #{publishedDate}, #{bookAbstract})
+  </insert>
+  <select id="findById" resultType="jp.co.acroquest.entity.Book">
+    SELECT id, bookName, authorName, publisher, category, publishedDate, bookAbstract FROM book WHERE id = #{id}
+  </select>
+  <select id="findAll" resultType="List">
+    SELECT id, bookName, authorName, publisher, category, publishedDate, bookAbstract FROM book WHERE id = #{id}
+  </select>
+
+</mapper>
